@@ -885,6 +885,20 @@ function gs() {
         style: document.getElementById('ss').value
     }, 'sld', 'src', 'so', (r) => r.replace(/\n/g, '<br>'));
 }
+    function init() {
+    updateAuthUI();
+    if (token) { 
+        fetchUsage(); 
+        fetchUser(); 
+        // ← ضيف هالسطر
+        setInterval(() => {
+            if (token) {
+                fetchUser(); // بيجيب الـ plan الجديد من الباك إند
+            }
+        }, 30000); // كل 30 ثانية
+    }
+    setupCounters();
+}
 
 function gc() {
     const t = document.getElementById('ci').value.trim();
